@@ -1,19 +1,22 @@
 import React from "react";
 import QRCode from 'qrcode.react';
 
+import sampleJson from '../constants/sampleJson.json'
+
 const styles = {
   root: {
     color: "#2C1752",
     fontFamily: "sans-serif",
-    textAlign: "center"
+    textAlign: "center",
+    color: "#2be809"
   },
   title: {
-    color: "#7B3FE4"
+    color: "#2be809"
   }
 };
 
 // update with your contract address
-const deployedContractAddress = "0x02161BBF3dCCB68C77932BA9C1786E9F530980e2";
+const deployedContractAddress = "0x9b93536577666b1a31fef8EaBdF6Ac5DfbAf5e56";
 
 // more info on query based requests: https://0xpolygonid.github.io/tutorials/wallet/proof-generation/types-of-auth-requests-and-proofs/#query-based-request
 const qrProofRequestJson = {
@@ -36,14 +39,13 @@ const qrProofRequestJson = {
           query: {
             allowed_issuers: ["*"],
             req: {
-              birthday: {
-                $lt: 20010101
+              vaccinated:{
+                $eq: 1
               }
             },
             schema: {
-              url:
-              "https://s3.eu-west-1.amazonaws.com/polygonid-schemas/9b1c05f4-7fb6-4792-abe3-d1ddbd9a9609.json-ld",
-              type: "AgeCredential"
+              url: "https://s3.eu-west-1.amazonaws.com/polygonid-schemas/8a01ed9f-e5b8-4fc3-b8cc-6ebaf5d87017.json-ld",
+              type: "VaccinationProof"
             }
           }
         }
@@ -53,54 +55,31 @@ const qrProofRequestJson = {
 };
 
 export const Home = () => {
-  
-
   return (
     <div style={styles.root}>
         <h2 style={styles.title}>
           Claim an ERC20 zk airdrop on Polygon Mumbai
         </h2>
+        <h3>
+          Vaccine verification
+        </h3>
         <p>
-          Age verification: You must prove your date of birth was before Jan 1,
-          2001 to claim.
-        </p>
-        <p>
-          Complete age verification by issuing yourself a Polygon ID claim via{" "}
+          Complete vaccine verification by issuing yourself a Polygon ID claim via
           <a
             href="https://polygontechnology.notion.site/Issue-yourself-a-KYC-Age-Credential-claim-a06a6fe048c34115a3d22d7d1ea315ea"
             target="_blank"
-          >
-            KYC Age Credentials
-          </a>{" "}
-          then scan QR code within Polygon ID app to claim tokens
+          > Polygon Community
+          </a>
         </p>
+        <p>then scan QR code within Polygon ID app to claim tokens</p>
 
         <div>
           <QRCode
             renderAs="canvas" 
-            style={{ width: 300, height: 300 }}
+            style={{ width: 256, height: 256}}
             value={JSON.stringify(qrProofRequestJson)}
           />
         </div>
-        <br />
-        <p>
-          Github:{" "}
-          <a
-            href="https://github.com/oceans404/tutorial-examples/tree/main/on-chain-verification"
-            target="_blank"
-          >
-            On-chain verification tutorial
-          </a>
-        </p>
-        <p>
-          Polygonscan:{" "}
-          <a
-            href={`https://mumbai.polygonscan.com/token/${deployedContractAddress}`}
-            target="_blank"
-          >
-            Token ERC20zkAirdrop
-          </a>
-        </p>
       </div>
   )
 }
