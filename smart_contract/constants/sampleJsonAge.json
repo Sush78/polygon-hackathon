@@ -17,7 +17,7 @@
                 "query":{
                     "allowed_issuers":["*"],
                     "req":{ 
-                        "dateOfBirth":{
+                        "birthday":{
                             "$lt":20020101
                             }
                         },
