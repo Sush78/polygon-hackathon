@@ -65,11 +65,11 @@ export const Home = () => {
     setTxnSuccess(true)
     toast(toastmsg)
   }
-  if(!toastmsg && !txnSuccess){
-    setTimeout(() => {
-      toast('Valdation timed out!')
-    }, 1000 * 60 * 2);
-  }
+  // if(!toastmsg && !txnSuccess){
+  //   setTimeout(() => {
+  //     toast('Valdation timed out!')
+  //   }, 1000 * 60 * 2);
+  // }
   return (
     <div style={styles.root}>
         <h2 style={styles.title}>

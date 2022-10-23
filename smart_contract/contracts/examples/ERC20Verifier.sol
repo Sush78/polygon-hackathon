@@ -14,9 +14,15 @@ contract ERC20Verifier is ERC20, ZKPVerifier {
 
     uint256 public TOKEN_AMOUNT_FOR_AIRDROP_PER_ID = 5 * 10**uint(decimals());
 
+
     constructor(string memory name_, string memory symbol_)
         ERC20(name_, symbol_)
     {}
+    
+    event TransactionResult(
+        address user_address,
+        bool evaluation 
+    );
 
     function _beforeProofSubmit(
         uint64, /* requestId */
@@ -51,6 +57,10 @@ contract ERC20Verifier is ERC20, ZKPVerifier {
             super._mint(_msgSender(), TOKEN_AMOUNT_FOR_AIRDROP_PER_ID);
             addressToId[_msgSender()] = id;
             idToAddress[id] = _msgSender();
+            // emit event
+            emit TransactionResult(msg.sender, true);
+        } else {
+            emit TransactionResult(msg.sender, false);
         }
     }
 
