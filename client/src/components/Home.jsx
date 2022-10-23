@@ -1,5 +1,9 @@
-import React from "react";
+import React, {useContext, useState, useEffect} from "react";
 import QRCode from 'qrcode.react';
+import { Erc20VerifierContext } from "../context/ERC20VerifierContext";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import sampleJson from '../constants/sampleJson.json'
 
@@ -16,7 +20,7 @@ const styles = {
 };
 
 // update with your contract address
-const deployedContractAddress = "0x9b93536577666b1a31fef8EaBdF6Ac5DfbAf5e56";
+const deployedContractAddress = "0x239ddDb79bEA7ecAE73B6E09Ed6C41be3e7c6318";
 
 // more info on query based requests: https://0xpolygonid.github.io/tutorials/wallet/proof-generation/types-of-auth-requests-and-proofs/#query-based-request
 const qrProofRequestJson = {
@@ -55,10 +59,21 @@ const qrProofRequestJson = {
 };
 
 export const Home = () => {
+  const { checkMintEvent, toastmsg } = useContext(Erc20VerifierContext);
+  const [txnSuccess, setTxnSuccess] = useState(false)
+  if(toastmsg){
+    setTxnSuccess(true)
+    toast(toastmsg)
+  }
+  if(!toastmsg && !txnSuccess){
+    setTimeout(() => {
+      toast('Valdation timed out!')
+    }, 1000 * 60 * 2);
+  }
   return (
     <div style={styles.root}>
         <h2 style={styles.title}>
-          Claim an ERC20 zk airdrop on Polygon Mumbai
+          Health Pass
         </h2>
         <h3>
           Vaccine verification
@@ -71,7 +86,7 @@ export const Home = () => {
           > Polygon Community
           </a>
         </p>
-        <p>then scan QR code within Polygon ID app to claim tokens</p>
+        <p>then scan QR code within Polygon ID app to verify vaccination</p>
 
         <div>
           <QRCode
@@ -80,6 +95,7 @@ export const Home = () => {
             value={JSON.stringify(qrProofRequestJson)}
           />
         </div>
+        <ToastContainer />
       </div>
   )
 }
