@@ -4,7 +4,7 @@
     "type":"https://iden3-communication.io/proofs/1.0/contract-invoke-request",
     "body":{
         "transaction_data":{
-            "contract_address":"0x02161BBF3dCCB68C77932BA9C1786E9F530980e2",
+            "contract_address":"0x9b93536577666b1a31fef8EaBdF6Ac5DfbAf5e56",
             "method_id":"b68967e2",
             "chain_id":80001,
             "network":"polygon-mumbai"
@@ -17,16 +17,17 @@
                 "query":{
                     "allowed_issuers":["*"],
                     "req":{ 
-                        "dateOfBirth":{
-                            "$lt":20020101
+                        "vaccinated":{
+                            "$eq": 1
                             }
                         },
                     "schema":{
-                            "url":"https://s3.eu-west-1.amazonaws.com/polygonid-schemas/77321c2b-ab96-4c7c-984a-d0202104f468.json-ld",
-                            "type":"AgeCredential"
+                            "url":"https://s3.eu-west-1.amazonaws.com/polygonid-schemas/8a01ed9f-e5b8-4fc3-b8cc-6ebaf5d87017.json-ld",
+                            "type":"VaccinationProof"
                             }
                         }
                     }
                 }]
             }
+        
 }

@@ -5,7 +5,7 @@ module.exports = {
   networks: {
     polygon:{
       url: "https://polygon-mumbai.g.alchemy.com/v2/6F2K-LHaNFo0kjX6Va7yeOdKpL5dO2NY",
-      accounts: ["enter account address"]
+      accounts: ["enter account private key here"]
     }
   }
 };

@@ -4,20 +4,20 @@ const main = async () => {
     const validatorAddress = "0xb1e86C4c687B85520eF4fd2a0d14e81970a15aFB";
 
     // Grab the schema hash from Polygon ID Platform
-    const schemaHash =  "6815b2cd6f253cbad68e56eaa9fb4964" //"f03ac39aa54a5a2770a30f17d8042507"
+    const schemaHash =  "86d3ebcfc97d6f7c844bafa262d4d970" // 6815b2cd6f253cbad68e56eaa9fb4964
 
     const schemaEnd = fromLittleEndian(hexToBytes(schemaHash))
 
     const ageQuery = {
         schema: ethers.BigNumber.from(schemaEnd),
         slotIndex: 2,
-        operator: 2,
-        value: [20020101, ...new Array(63).fill(0).map(i => 0)],
+        operator: 1,
+        value: [1, ...new Array(63).fill(0).map(i => 0)],
         circuitId,
     };
 
     // add the address of the contract just deployed
-    ERC20VerifierAddress = "0x02161BBF3dCCB68C77932BA9C1786E9F530980e2"
+    ERC20VerifierAddress = "0x9b93536577666b1a31fef8EaBdF6Ac5DfbAf5e56"
 
     let erc20Verifier = await hre.ethers.getContractAt("ERC20Verifier", ERC20VerifierAddress)
 
