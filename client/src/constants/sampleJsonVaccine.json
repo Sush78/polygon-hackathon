@@ -1,0 +1,33 @@
+{  
+    "id":"c811849d-6bfb-4d85-936e-3d9759c7f105",
+    "typ":"application/iden3comm-plain-json",
+    "type":"https://iden3-communication.io/proofs/1.0/contract-invoke-request",
+    "body":{
+        "transaction_data":{
+            "contract_address":"0x239ddDb79bEA7ecAE73B6E09Ed6C41be3e7c6318",
+            "method_id":"b68967e2",
+            "chain_id":80001,
+            "network":"polygon-mumbai"
+            },
+        "reason":"airdrop participation",
+        "scope":[{
+            "id":1,
+            "circuit_id":"credentialAtomicQuerySig",
+            "rules":{
+                "query":{
+                    "allowed_issuers":["*"],
+                    "req":{ 
+                        "vaccinated":{
+                            "$eq": 1
+                            }
+                        },
+                    "schema":{
+                            "url":"https://s3.eu-west-1.amazonaws.com/polygonid-schemas/8a01ed9f-e5b8-4fc3-b8cc-6ebaf5d87017.json-ld",
+                            "type":"VaccinationProof"
+                            }
+                        }
+                    }
+                }]
+            }
+        
+}
