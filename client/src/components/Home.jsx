@@ -60,12 +60,13 @@ const qrProofRequestJson = {
 
 export const Home = () => {
   const { checkMintEvent, toastmsg } = useContext(Erc20VerifierContext);
-  const [txnSuccess, setTxnSuccess] = useState(false)
+  //const [txnSuccess, setTxnSuccess] = useState(false)
+  const txnSuccess = false
   if(toastmsg){
-    setTxnSuccess(true)
+    // txnSuccess = true
     toast(toastmsg)
   }
-  // if(!toastmsg && !txnSuccess){
+  // if(!txnSuccess){
   //   setTimeout(() => {
   //     toast('Valdation timed out!')
   //   }, 1000 * 60 * 2);
@@ -91,7 +92,7 @@ export const Home = () => {
         <div>
           <QRCode
             renderAs="canvas" 
-            style={{ width: 256, height: 256}}
+            style={{ width: 400, height: 400}}
             value={JSON.stringify(qrProofRequestJson)}
           />
         </div>
